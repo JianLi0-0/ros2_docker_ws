@@ -41,7 +41,6 @@ services:
       ]
     volumes:
       - ../../../:/home/lee/workspace
-      - ../aliases.sh:/home/lee/.aliases.sh:rw
       - ../bashrc:/home/lee/.bashrc:rw
       - ../colcon-defaults.yaml:/home/lee/.colcon/defaults.yaml:rw
       - ../commands.sh:/home/lee/.commands.sh:rw
