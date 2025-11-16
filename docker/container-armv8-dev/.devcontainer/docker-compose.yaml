@@ -1,0 +1,58 @@
+# DUA environment container management settings.
+#
+# Roberto Masocco <robmasocco@gmail.com>
+# Intelligent Systems Lab <isl.torvergata@gmail.com>
+#
+# April 5, 2023
+
+version: "3.9"
+
+services:
+  ros2-examples-armv8-dev:
+    build:
+      context: ../
+      network: host
+      dockerfile: Dockerfile
+      args:
+        - USER_UID=1000
+    image: ros2-examples:armv8-dev
+    environment:
+      TERM: xterm-256color
+      # 使用容器内的 VNC 显示 (vncserver :1 -> localhost:5901)
+      DISPLAY: ":1"
+      SHELL: /usr/bin/bash
+      # 使用 Cyclone DDS 作为 RMW（如果不需要可删除此行）
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+    user: lee
+    # network_mode: "host"  # 在 macOS (Docker Desktop) 上无效，改为端口映射
+    ports:
+      - "5901:5901"                 # (示例) VNC -> mac 映射（如需要远程桌面）
+      - "7400-7410:7400-7410/udp"   # 映射一段 UDP 端口供 DDS/RTPS 单播使用（根据需要调整范围）
+    privileged: true
+    ipc: host
+    stdin_open: false
+    tty: true
+    working_dir: /home/lee/workspace
+    command:
+      [
+        "/bin/bash",
+        "-c",
+        "/usr/local/bin/start_vnc.sh"
+      ]
+    volumes:
+      - ../../../:/home/lee/workspace
+      - ../aliases.sh:/home/lee/.aliases.sh:rw
+      - ../bashrc:/home/lee/.bashrc:rw
+      - ../colcon-defaults.yaml:/home/lee/.colcon/defaults.yaml:rw
+      - ../commands.sh:/home/lee/.commands.sh:rw
+      - ../ros2.sh:/home/lee/.ros2.sh:rw
+      # 移除 Zsh 相关挂载，避免错误与混淆
+      # - ../p10k.zsh:/home/lee/.p10k.zsh:rw
+      # - ../zshrc:/home/lee/.zshrc:rw
+      # - ../zsh_history:/home/lee/zsh_history
+      - ~/.ssh:/home/lee/.ssh
+      - ~/.gitconfig:/home/lee/.gitconfig
+      - /dev:/dev
+      - /sys:/sys
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
