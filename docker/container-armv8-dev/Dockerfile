@@ -5,7 +5,10 @@
 #
 # April 5, 2023
 
+# ARM64v8:
 FROM arm64v8/ros:humble-ros-base-jammy
+# x86_64:
+# FROM osrf/ros:humble-desktop-full-jammy
 
 # Change this if you encounter problems with the default user
 ARG USER_UID=1000
