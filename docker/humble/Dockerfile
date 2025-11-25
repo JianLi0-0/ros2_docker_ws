@@ -35,7 +35,7 @@ RUN apt-get update && \
 # IMAGE SETUP END #
 
 # Install new packages here if you need to rebuild the image for saving time
-RUN apt-get install -y --no-install-recommends gdb
+RUN apt-get install -y --no-install-recommends gdb ros-humble-ruckig net-tools
 
 # Create a user with Bash as shell and set password (NOTE: plain text password is for dev convenience only)
 # 修复: 构建失败因为 group 'internal' 不存在。先确保需要的自定义组存在，再创建用户。
@@ -107,7 +107,6 @@ WORKDIR ${HOME}
 # Copy user configuration files
 COPY --chown=lee:lee ./bashrc ./.bashrc
 COPY --chown=lee:lee ./colcon-defaults.yaml /home/lee/.colcon/defaults.yaml
-COPY --chown=lee:lee ./commands.sh ./.commands.sh
 COPY --chown=lee:lee ./ros2.sh ./.ros2.sh
 
 # Zsh configuration removed (container now uses Bash by default)
