@@ -35,9 +35,10 @@ RUN apt-get update && \
 # IMAGE SETUP END #
 
 # Install new packages here if you need to rebuild the image for saving time
-RUN apt-get update && apt-get install -y --no-install-recommends gdb ros-humble-ruckig net-tools ros-humble-grid-map-ros
+RUN apt-get install -y --no-install-recommends gdb ros-humble-ruckig net-tools ros-humble-grid-map-ros
 RUN apt-get install -y --no-install-recommends ros-humble-nav2-costmap-2d ros-humble-grid-map-costmap-2d ros-humble-nav2-smac-planner
 RUN apt-get install -y --no-install-recommends ros-humble-geodesy ros-humble-nav2-map-server ros-humble-nav2-lifecycle-manager
+RUN apt-get install -y --no-install-recommends ccache ninja-build
 
 # Create a user with Bash as shell and set password (NOTE: plain text password is for dev convenience only)
 # 修复: 构建失败因为 group 'internal' 不存在。先确保需要的自定义组存在，再创建用户。
