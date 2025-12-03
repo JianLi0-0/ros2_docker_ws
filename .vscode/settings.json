@@ -1,5 +1,5 @@
 {
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.rulers": [
     100
   ],
@@ -89,7 +89,25 @@
     "variant": "cpp",
     "*.idl": "cpp",
     "*.cpp": "cpp",
-    "*.hpp": "cpp"
+    "*.hpp": "cpp",
+    "csetjmp": "cpp",
+    "barrier": "cpp",
+    "charconv": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "coroutine": "cpp",
+    "cuchar": "cpp",
+    "netfwd": "cpp",
+    "source_location": "cpp",
+    "rope": "cpp",
+    "slist": "cpp",
+    "latch": "cpp",
+    "numbers": "cpp",
+    "ranges": "cpp",
+    "semaphore": "cpp",
+    "span": "cpp",
+    "stop_token": "cpp",
+    "syncstream": "cpp"
   },
   // Use Pylance as language server
   "python.languageServer": "Pylance",

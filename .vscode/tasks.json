@@ -5,7 +5,7 @@
       "label": "build",
       "detail": "Build workspace (default)",
       "type": "shell",
-      "command": "source /opt/ros/humble/setup.sh; colcon build --event-handlers console_direct+ --symlink-install --ament-cmake-args '-DCMAKE_BUILD_TYPE=RelWithDebInfo' '-DCMAKE_EXPORT_COMPILE_COMMANDS=On'",
+      "command": "source /opt/ros/humble/setup.sh; colcon build --event-handlers console_direct+ --symlink-install --cmake-args -G Ninja -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DBUILD_TESTING=OFF -DCMAKE_CXX_FLAGS=-fdiagnostics-color=always",
       "group": {
         "kind": "build",
         "isDefault": true
